@@ -15,6 +15,8 @@
  */
 package org.nbgames.gunu;
 
+import org.nbgames.core.GameCategory;
+import org.nbgames.core.NbGames;
 import org.nbgames.core.api.GameProvider;
 import org.nbgames.core.api.LogicGameProvider;
 import org.nbgames.core.base.GameController;
@@ -48,6 +50,11 @@ public class GunuController extends GameController implements LogicGameProvider,
         mGamePanel = new GunuPanel(this);
         setGamePanel(mGamePanel);
         gameTopComponent.setGamePanel(mGamePanel);
+    }
+
+    @Override
+    public GameCategory getCategory() {
+        return GameCategory.LOGIC;
     }
 
     @Override
