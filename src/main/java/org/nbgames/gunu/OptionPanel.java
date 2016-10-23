@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2015 Patrik Karlsson.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,7 +17,7 @@ package org.nbgames.gunu;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import se.trixon.almond.dialogs.ColorChooserDialog;
+import se.trixon.almond.nbp.dialogs.ColorChooserDialog;
 
 final class OptionPanel extends javax.swing.JPanel implements DocumentListener {
 
@@ -59,7 +59,7 @@ final class OptionPanel extends javax.swing.JPanel implements DocumentListener {
         minFormattedTextField = new javax.swing.JFormattedTextField();
         toLabel = new javax.swing.JLabel();
         maxFormattedTextField = new javax.swing.JFormattedTextField();
-        backgroundButton = new se.trixon.almond.swing.ColorChooserButton();
+        backgroundButton = new se.trixon.almond.nbp.swing.ColorChooserButton();
 
         org.openide.awt.Mnemonics.setLocalizedText(fromLabel, org.openide.util.NbBundle.getMessage(OptionPanel.class, "OptionPanel.fromLabel.text")); // NOI18N
 
@@ -141,7 +141,7 @@ final class OptionPanel extends javax.swing.JPanel implements DocumentListener {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private se.trixon.almond.swing.ColorChooserButton backgroundButton;
+    private se.trixon.almond.nbp.swing.ColorChooserButton backgroundButton;
     private javax.swing.JLabel fromLabel;
     private javax.swing.JFormattedTextField maxFormattedTextField;
     private javax.swing.JFormattedTextField minFormattedTextField;

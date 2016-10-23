@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2015 Patrik Karlsson.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,10 +16,9 @@
 package org.nbgames.gunu;
 
 import org.nbgames.core.GameCategory;
-import org.nbgames.core.NbGames;
+import org.nbgames.core.GameController;
 import org.nbgames.core.api.GameProvider;
 import org.nbgames.core.api.LogicGameProvider;
-import org.nbgames.core.GameController;
 import org.nbgames.core.game.NewGameController;
 import org.nbgames.core.game.NewGameDialogManager;
 import org.openide.DialogDisplayer;
@@ -33,7 +32,8 @@ import org.openide.windows.WindowManager;
  * @author Patrik Karlsson <patrik@trixon.se>
  */
 @ServiceProviders(value = {
-    @ServiceProvider(service = GameProvider.class),
+    @ServiceProvider(service = GameProvider.class)
+    ,
     @ServiceProvider(service = LogicGameProvider.class)}
 )
 public class GunuController extends GameController implements LogicGameProvider, NewGameController {

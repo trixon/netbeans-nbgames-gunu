@@ -86,7 +86,7 @@
         <Property name="text" type="java.lang.String" value="1000" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="se.trixon.almond.swing.ColorChooserButton" name="backgroundButton">
+    <Component class="se.trixon.almond.nbp.swing.ColorChooserButton" name="backgroundButton">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
           <ResourceString bundle="org/nbgames/gunu/Bundle.properties" key="OptionPanel.backgroundButton.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
