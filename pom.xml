@@ -129,5 +129,6 @@
     <properties>
         <netbeans.version>RELEASE82</netbeans.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <netbeans.hint.license>apache20</netbeans.hint.license>
     </properties>
 </project>
