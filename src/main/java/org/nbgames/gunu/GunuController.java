@@ -15,10 +15,10 @@
  */
 package org.nbgames.gunu;
 
+import javax.swing.JPanel;
 import org.nbgames.core.GameCategory;
 import org.nbgames.core.GameController;
 import org.nbgames.core.api.LogicGameProvider;
-import org.nbgames.core.base.GamePanel;
 import org.nbgames.core.game.NewGameController;
 import org.nbgames.core.game.NewGameDialogManager;
 import org.openide.DialogDisplayer;
@@ -49,7 +49,12 @@ public class GunuController extends GameController implements LogicGameProvider,
     }
 
     @Override
-    public GamePanel getGamePanel() {
+    public String getId() {
+        return getClass().getName();
+    }
+
+    @Override
+    public JPanel getPanel() {
         if (mGamePanel == null) {
             mGamePanel = new GunuPanel();
         }
@@ -58,8 +63,8 @@ public class GunuController extends GameController implements LogicGameProvider,
     }
 
     @Override
-    public String getId() {
-        return getClass().getName();
+    public JPanel getSettingsPanel() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
