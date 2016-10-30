@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Patrik Karlsson.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,7 +35,7 @@ import org.openide.util.NbBundle;
 
 public class GunuPanel extends GamePanel {
 
-    GunuController mGunuController;
+//    GunuController mGunuController;
     private long mValue;
     private int mCounter;
     private final Random mRandom = new Random();
@@ -60,12 +60,11 @@ public class GunuPanel extends GamePanel {
 
     }
 
-    public GunuPanel(GunuController gunuController) {
-        this();
-
-        mGunuController = gunuController;
-    }
-
+//    public GunuPanel(GunuController gunuController) {
+//        this();
+//
+//        mGunuController = gunuController;
+//    }
     String getGameTitle() {
         return "Gunu";
     }
@@ -99,13 +98,16 @@ public class GunuPanel extends GamePanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel1 = new javax.swing.JPanel();
         guessButton = new javax.swing.JButton();
         statusLabel = new javax.swing.JLabel();
         infoLabel = new javax.swing.JLabel();
         valueTextField = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(204, 204, 204));
+        setLayout(new java.awt.GridBagLayout());
 
         guessButton.setFont(new java.awt.Font("DejaVu Sans", 0, 48)); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(guessButton, org.openide.util.NbBundle.getMessage(GunuPanel.class, "GunuPanel.guessButton.text")); // NOI18N
@@ -133,22 +135,22 @@ public class GunuPanel extends GamePanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(valueTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(valueTextField)
                     .addComponent(guessButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(infoLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(statusLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(infoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -157,8 +159,16 @@ public class GunuPanel extends GamePanel {
                 .addComponent(guessButton)
                 .addGap(18, 18, 18)
                 .addComponent(statusLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 125;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 126, 6);
+        add(jPanel1, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void guessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessButtonActionPerformed
@@ -185,6 +195,7 @@ public class GunuPanel extends GamePanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton guessButton;
     private javax.swing.JLabel infoLabel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JFormattedTextField valueTextField;
     // End of variables declaration//GEN-END:variables
