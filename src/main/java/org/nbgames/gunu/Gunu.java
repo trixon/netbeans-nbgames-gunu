@@ -19,12 +19,9 @@ import javax.swing.JPanel;
 import org.nbgames.core.GameCategory;
 import org.nbgames.core.GameController;
 import org.nbgames.core.api.LogicGameProvider;
-import org.nbgames.core.game.NewGameController;
-import org.nbgames.core.game.NewGameDialogManager;
-import org.openide.DialogDisplayer;
+import org.nbgames.core.base.NewGamePanel;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
-import org.openide.windows.WindowManager;
 
 /**
  *
@@ -33,14 +30,15 @@ import org.openide.windows.WindowManager;
 @ServiceProviders(value = {
     @ServiceProvider(service = GameController.class)
     ,
-    @ServiceProvider(service = LogicGameProvider.class)}
+    @ServiceProvider(service = LogicGameProvider.class)
+}
 )
-public class GunuController extends GameController implements LogicGameProvider, NewGameController {
+public class Gunu extends GameController implements LogicGameProvider {
 
     public static final String TAG = "Gunu";
     private GunuPanel mGamePanel;
 
-    public GunuController() {
+    public Gunu() {
     }
 
     @Override
@@ -49,8 +47,13 @@ public class GunuController extends GameController implements LogicGameProvider,
     }
 
     @Override
-    public String getId() {
-        return getClass().getName();
+    public String getHelp() {
+        return "gunu help";
+    }
+
+    @Override
+    public NewGamePanel getNewGamePanel() {
+        return new GunuNewGamePanel();
     }
 
     @Override
@@ -63,30 +66,13 @@ public class GunuController extends GameController implements LogicGameProvider,
     }
 
     @Override
-    public JPanel getSettingsPanel() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void onRequestNewGameCancel() {
+    public JPanel getOptionsPanel() {
+        return null;
     }
 
     @Override
     public void onRequestNewGameStart() {
+        System.out.println("onRequestNewGameStart " + getName());
 //        getGamePanel().newGame()
-        updateStatusBar();
-    }
-
-    @Override
-    public void requestNewGame() {
-        WindowManager.getDefault().invokeWhenUIReady(() -> {
-            NewGameDialogManager manager = new NewGameDialogManager(new GunuNewGamePanel(), GunuController.this);
-            DialogDisplayer.getDefault().notify(manager.getDialogDescriptor());
-        });
-    }
-
-    @Override
-    public void updateStatusBar() {
-//        StatusDisplayer.getDefault().setStatusText(getGamePanel().getGameTitle(), StatusDisplayer.IMPORTANCE_ERROR_HIGHLIGHT);
     }
 }
