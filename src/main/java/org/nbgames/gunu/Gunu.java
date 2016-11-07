@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import org.nbgames.core.GameCategory;
 import org.nbgames.core.GameController;
 import org.nbgames.core.api.LogicGameProvider;
+import org.nbgames.core.base.GamePanel;
 import org.nbgames.core.base.NewGamePanel;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
@@ -57,7 +58,7 @@ public class Gunu extends GameController implements LogicGameProvider {
     }
 
     @Override
-    public JPanel getPanel() {
+    public GamePanel getPanel() {
         if (mGamePanel == null) {
             mGamePanel = new GunuPanel();
         }
@@ -73,6 +74,6 @@ public class Gunu extends GameController implements LogicGameProvider {
     @Override
     public void onRequestNewGameStart() {
         System.out.println("onRequestNewGameStart " + getName());
-//        getGamePanel().newGame()
+        getPanel().newGame();
     }
 }

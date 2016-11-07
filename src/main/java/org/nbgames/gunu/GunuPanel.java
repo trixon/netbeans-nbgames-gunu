@@ -18,7 +18,6 @@ package org.nbgames.gunu;
 import java.util.Random;
 import java.util.prefs.PreferenceChangeEvent;
 import java.util.prefs.PreferenceChangeListener;
-import javax.swing.border.BevelBorder;
 import org.nbgames.core.NbGames;
 import org.nbgames.core.base.GamePanel;
 import org.openide.util.NbBundle;
@@ -46,7 +45,7 @@ public class GunuPanel extends GamePanel {
     public GunuPanel() {
         initComponents();
         setVisible(false);
-        setBorder(new BevelBorder(BevelBorder.RAISED));
+//        setBorder(new BevelBorder(BevelBorder.RAISED));
         setBackground(Options.INSTANCE.getColorBackground());
         Options.INSTANCE.getPreferences().addPreferenceChangeListener(new PreferenceChangeListener() {
 
@@ -69,7 +68,8 @@ public class GunuPanel extends GamePanel {
         return "Gunu";
     }
 
-    void newGame() {
+    @Override
+    public void newGame() {
         NbGames.outln(Gunu.TAG, "newGame");
         setVisible(true);
 
@@ -109,6 +109,7 @@ public class GunuPanel extends GamePanel {
         setBackground(new java.awt.Color(204, 204, 204));
         setLayout(new java.awt.GridBagLayout());
 
+        centerPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         centerPanel.setPreferredSize(new java.awt.Dimension(390, 280));
 
         guessButton.setFont(new java.awt.Font("DejaVu Sans", 0, 48)); // NOI18N
