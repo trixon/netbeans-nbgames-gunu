@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Patrik Karlsson.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,16 +15,21 @@
  */
 package org.nbgames.gunu;
 
+import java.text.ParseException;
 import javax.swing.DefaultComboBoxModel;
+import org.nbgames.core.DictNbg;
 import org.nbgames.core.Player;
 import org.nbgames.core.PlayerManager;
 import org.nbgames.core.base.NewGamePanel;
+import org.openide.util.Exceptions;
 
 /**
  *
  * @author Patrik Karlsson <patrik@trixon.se>
  */
 public class GunuNewGamePanel extends NewGamePanel {
+
+    private final Options mOptions = Options.getInstance();
 
     /**
      * Creates new form GunuNewGamePanel
@@ -33,12 +38,28 @@ public class GunuNewGamePanel extends NewGamePanel {
         initComponents();
         Object[] players = PlayerManager.INSTANCE.getPlayersArray();
         playerComboBox.setModel(new DefaultComboBoxModel(players));
+
+        fromSpinner.setValue(mOptions.getFrom());
+        toSpinner.setValue(mOptions.getTo());
     }
 
     @Override
     public void saveState() {
         String name = ((Player) playerComboBox.getSelectedItem()).getName();
-        Options.INSTANCE.setPlayer(name);
+        mOptions.setPlayer(name);
+
+        try {
+            fromSpinner.commitEdit();
+            toSpinner.commitEdit();
+        } catch (ParseException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+
+        Integer fromValue = (Integer) fromSpinner.getValue();
+        Integer toValue = (Integer) toSpinner.getValue();
+
+        mOptions.setFrom(Math.min(fromValue, toValue));
+        mOptions.setTo(Math.max(fromValue, toValue));
     }
 
     /**
@@ -49,36 +70,70 @@ public class GunuNewGamePanel extends NewGamePanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         messageLabel = new javax.swing.JLabel();
         playerComboBox = new javax.swing.JComboBox();
+        fromLabel = new javax.swing.JLabel();
+        fromSpinner = new javax.swing.JSpinner();
+        toLabel = new javax.swing.JLabel();
+        toSpinner = new javax.swing.JSpinner();
 
-        org.openide.awt.Mnemonics.setLocalizedText(messageLabel, org.openide.util.NbBundle.getMessage(GunuNewGamePanel.class, "GunuNewGamePanel.messageLabel.text")); // NOI18N
+        setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(messageLabel)
-                    .addComponent(playerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(messageLabel)
-                .addGap(18, 18, 18)
-                .addComponent(playerComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
+        org.openide.awt.Mnemonics.setLocalizedText(messageLabel, DictNbg.SELECT_PLAYER.toString());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(messageLabel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(playerComboBox, gridBagConstraints);
+
+        org.openide.awt.Mnemonics.setLocalizedText(fromLabel, org.openide.util.NbBundle.getMessage(GunuNewGamePanel.class, "GunuNewGamePanel.fromLabel.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 0, 0);
+        add(fromLabel, gridBagConstraints);
+
+        fromSpinner.setModel(new javax.swing.SpinnerNumberModel(-1000, -1000, 1000, 1));
+        fromSpinner.setEditor(new javax.swing.JSpinner.NumberEditor(fromSpinner, ""));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(fromSpinner, gridBagConstraints);
+
+        org.openide.awt.Mnemonics.setLocalizedText(toLabel, org.openide.util.NbBundle.getMessage(GunuNewGamePanel.class, "GunuNewGamePanel.toLabel.text")); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 0, 0);
+        add(toLabel, gridBagConstraints);
+
+        toSpinner.setModel(new javax.swing.SpinnerNumberModel(1000, -1000, 1000, 1));
+        toSpinner.setEditor(new javax.swing.JSpinner.NumberEditor(toSpinner, ""));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(toSpinner, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel fromLabel;
+    private javax.swing.JSpinner fromSpinner;
     private javax.swing.JLabel messageLabel;
     private javax.swing.JComboBox playerComboBox;
+    private javax.swing.JLabel toLabel;
+    private javax.swing.JSpinner toSpinner;
     // End of variables declaration//GEN-END:variables
 }

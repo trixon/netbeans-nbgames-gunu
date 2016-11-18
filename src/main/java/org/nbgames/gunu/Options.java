@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Patrik Karlsson.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,28 +24,30 @@ import se.trixon.almond.util.GraphicsHelper;
  *
  * @author Patrik Karlsson <patrik@trixon.se>
  */
-public enum Options {
+public class Options {
 
-    INSTANCE;
     public static final Color DEFAULT_COLOR_BACKGROUND = Color.decode("#656610");
-    public static final long DEFAULT_MAX = 1000;
-    public static final long DEFAULT_MIN = 0;
+    public static final int DEFAULT_FROM = -100;
+    public static final int DEFAULT_TO = 1000;
     public static final String KEY_COLOR_BACKGROUND = "background";
-    public static final String KEY_MAX = "max";
-    public static final String KEY_MIN = "min";
+    public static final String KEY_FROM = "from";
     public static final String KEY_PLAYER = "player";
+    public static final String KEY_TO = "to";
     private Preferences mPreferences = NbPreferences.forModule(Options.class);
+
+    public static Options getInstance() {
+        return Holder.INSTANCE;
+    }
+
+    private Options() {
+    }
 
     public Color getColorBackground() {
         return Color.decode(mPreferences.get(KEY_COLOR_BACKGROUND, GraphicsHelper.colorToString(DEFAULT_COLOR_BACKGROUND)));
     }
 
-    public long getMax() {
-        return mPreferences.getLong(KEY_MAX, DEFAULT_MAX);
-    }
-
-    public long getMin() {
-        return mPreferences.getLong(KEY_MIN, DEFAULT_MIN);
+    public int getFrom() {
+        return mPreferences.getInt(KEY_FROM, DEFAULT_FROM);
     }
 
     public String getPlayer() {
@@ -56,16 +58,16 @@ public enum Options {
         return mPreferences;
     }
 
+    public int getTo() {
+        return mPreferences.getInt(KEY_TO, DEFAULT_TO);
+    }
+
     public void setColorBackground(Color color) {
         mPreferences.put(KEY_COLOR_BACKGROUND, GraphicsHelper.colorToString(color));
     }
 
-    public void setMax(long max) {
-        mPreferences.putLong(KEY_MAX, max);
-    }
-
-    public void setMin(long min) {
-        mPreferences.putLong(KEY_MIN, min);
+    public void setFrom(int min) {
+        mPreferences.putInt(KEY_FROM, min);
     }
 
     public void setPlayer(String player) {
@@ -74,5 +76,14 @@ public enum Options {
 
     public void setPreferences(Preferences preferences) {
         mPreferences = preferences;
+    }
+
+    public void setTo(int max) {
+        mPreferences.putInt(KEY_TO, max);
+    }
+
+    private static class Holder {
+
+        private static final Options INSTANCE = new Options();
     }
 }

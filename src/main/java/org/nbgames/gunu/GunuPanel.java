@@ -17,7 +17,6 @@ package org.nbgames.gunu;
 
 import java.util.Random;
 import java.util.prefs.PreferenceChangeEvent;
-import java.util.prefs.PreferenceChangeListener;
 import org.nbgames.core.NbGames;
 import org.nbgames.core.base.GamePanel;
 import org.openide.util.NbBundle;
@@ -34,10 +33,10 @@ import org.openide.util.NbBundle;
 
 public class GunuPanel extends GamePanel {
 
-//    Gunu mGunuController;
-    private long mValue;
+    private int mValue;
     private int mCounter;
     private final Random mRandom = new Random();
+    private final Options mOptions = Options.getInstance();
 
     /**
      * Creates new form GunuPanel
@@ -45,27 +44,13 @@ public class GunuPanel extends GamePanel {
     public GunuPanel() {
         initComponents();
         setVisible(false);
-//        setBorder(new BevelBorder(BevelBorder.RAISED));
-        setBackground(Options.INSTANCE.getColorBackground());
-        Options.INSTANCE.getPreferences().addPreferenceChangeListener(new PreferenceChangeListener() {
-
-            @Override
-            public void preferenceChange(PreferenceChangeEvent evt) {
-                if (evt.getKey().equals(Options.KEY_COLOR_BACKGROUND)) {
-                    setBackground(Options.INSTANCE.getColorBackground());
-                }
+        setBackground(mOptions.getColorBackground());
+        mOptions.getPreferences().addPreferenceChangeListener((PreferenceChangeEvent evt) -> {
+            if (evt.getKey().equals(Options.KEY_COLOR_BACKGROUND)) {
+                setBackground(mOptions.getColorBackground());
             }
         });
 
-    }
-
-//    public GunuPanel(Gunu gunuController) {
-//        this();
-//
-//        mGunuController = gunuController;
-//    }
-    String getGameTitle() {
-        return "Gunu";
     }
 
     @Override
@@ -73,18 +58,22 @@ public class GunuPanel extends GamePanel {
         NbGames.outln(Gunu.TAG, "newGame");
         setVisible(true);
 
-        long min = Options.INSTANCE.getMin();
-        long max = Options.INSTANCE.getMax();
+        int min = mOptions.getFrom();
+        int max = mOptions.getTo();
+
+        System.out.println("GO");
+        System.out.println(min);
+        System.out.println(max);
 
         String info = NbBundle.getMessage(GunuPanel.class, "GunuPanel.infoLabel.text", min, max);
         infoLabel.setText(info);
-        valueTextField.setText(Long.toString(min));
+        valueTextField.setText(Integer.toString(min));
         valueTextField.setValue(min);
         valueTextField.setEnabled(true);
         valueTextField.selectAll();
 
         guessButton.setEnabled(true);
-        statusLabel.setText(NbBundle.getMessage(this.getClass(), "GunuPanel.statusLabel.text", Options.INSTANCE.getPlayer()));
+        statusLabel.setText(NbBundle.getMessage(this.getClass(), "GunuPanel.statusLabel.text", mOptions.getPlayer()));
 
         mValue = min + mRandom.nextInt((int) (max - min + 1));
         mCounter = 0;
@@ -128,9 +117,9 @@ public class GunuPanel extends GamePanel {
         infoLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         org.openide.awt.Mnemonics.setLocalizedText(infoLabel, org.openide.util.NbBundle.getMessage(GunuPanel.class, "GunuPanel.infoLabel.text")); // NOI18N
 
+        valueTextField.setColumns(4);
         valueTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         valueTextField.setHorizontalAlignment(javax.swing.JTextField.TRAILING);
-        valueTextField.setText("0"); // NOI18N
         valueTextField.setFont(new java.awt.Font("DejaVu Sans", 0, 48)); // NOI18N
         valueTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,18 +163,24 @@ public class GunuPanel extends GamePanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void guessButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guessButtonActionPerformed
-        mCounter++;
-        long value = (Long) valueTextField.getValue();
         String status = null;
-        if (value == mValue) {
-            status = Bundle.CTL_StatusEquals();
-            valueTextField.setEnabled(false);
-            guessButton.setEnabled(false);
-        } else if (value > mValue) {
-            status = Bundle.CTL_StatusHigh();
-        } else if (value < mValue) {
-            status = Bundle.CTL_StatusLow();
+        int value;
+        try {
+            value = ((Long) valueTextField.getValue()).intValue();
+            mCounter++;
+            if (value == mValue) {
+                status = Bundle.CTL_StatusEquals();
+                valueTextField.setEnabled(false);
+                guessButton.setEnabled(false);
+            } else if (value > mValue) {
+                status = Bundle.CTL_StatusHigh();
+            } else if (value < mValue) {
+                status = Bundle.CTL_StatusLow();
+            }
+        } catch (Exception e) {
+            status = "Invalid input";
         }
+
         statusLabel.setText(String.format("(%d) %s", mCounter, status));
     }//GEN-LAST:event_guessButtonActionPerformed
 

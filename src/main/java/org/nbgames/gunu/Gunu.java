@@ -15,10 +15,10 @@
  */
 package org.nbgames.gunu;
 
-import javax.swing.JPanel;
 import org.nbgames.core.GameCategory;
 import org.nbgames.core.GameController;
 import org.nbgames.core.api.LogicGameProvider;
+import org.nbgames.core.api.OptionsPanel;
 import org.nbgames.core.base.GamePanel;
 import org.nbgames.core.base.NewGamePanel;
 import org.openide.util.lookup.ServiceProvider;
@@ -38,6 +38,8 @@ public class Gunu extends GameController implements LogicGameProvider {
 
     public static final String TAG = "Gunu";
     private GunuPanel mGamePanel;
+    private GunuNewGamePanel mNewGamePanel;
+    private OptionPanel mOptionPanel;
 
     public Gunu() {
     }
@@ -54,7 +56,20 @@ public class Gunu extends GameController implements LogicGameProvider {
 
     @Override
     public NewGamePanel getNewGamePanel() {
-        return new GunuNewGamePanel();
+        if (mNewGamePanel == null) {
+            mNewGamePanel = new GunuNewGamePanel();
+        }
+
+        return mNewGamePanel;
+    }
+
+    @Override
+    public OptionsPanel getOptionsPanel() {
+        if (mOptionPanel == null) {
+            mOptionPanel = new OptionPanel();
+        }
+
+        return mOptionPanel;
     }
 
     @Override
@@ -64,11 +79,6 @@ public class Gunu extends GameController implements LogicGameProvider {
         }
 
         return mGamePanel;
-    }
-
-    @Override
-    public JPanel getOptionsPanel() {
-        return null;
     }
 
     @Override

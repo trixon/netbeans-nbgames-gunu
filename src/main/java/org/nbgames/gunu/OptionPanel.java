@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright 2016 Patrik Karlsson.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,36 +15,17 @@
  */
 package org.nbgames.gunu;
 
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import se.trixon.almond.nbp.dialogs.ColorChooserDialog;
+import javax.swing.SwingUtilities;
+import org.nbgames.core.api.OptionsPanel;
+import se.trixon.almond.util.Dict;
 
-final class OptionPanel extends javax.swing.JPanel implements DocumentListener {
+final class OptionPanel extends OptionsPanel {
 
-    private final OptionPanelController mController;
-    private final Options mOptions = Options.INSTANCE;
+    private final Options mOptions = Options.getInstance();
 
-    OptionPanel(OptionPanelController controller) {
-        mController = controller;
+    public OptionPanel() {
         initComponents();
-
-        minFormattedTextField.getDocument().addDocumentListener(this);
-        maxFormattedTextField.getDocument().addDocumentListener(this);
-    }
-
-    @Override
-    public void changedUpdate(DocumentEvent e) {
-        mController.changed();
-    }
-
-    @Override
-    public void insertUpdate(DocumentEvent e) {
-        mController.changed();
-    }
-
-    @Override
-    public void removeUpdate(DocumentEvent e) {
-        mController.changed();
+        load();
     }
 
     /**
@@ -54,97 +35,62 @@ final class OptionPanel extends javax.swing.JPanel implements DocumentListener {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        fromLabel = new javax.swing.JLabel();
-        minFormattedTextField = new javax.swing.JFormattedTextField();
-        toLabel = new javax.swing.JLabel();
-        maxFormattedTextField = new javax.swing.JFormattedTextField();
-        backgroundButton = new se.trixon.almond.nbp.swing.ColorChooserButton();
+        bgLabel = new javax.swing.JLabel();
+        bgColorComboBox = new org.openide.awt.ColorComboBox();
+        fgLabel = new javax.swing.JLabel();
+        fgColorComboBox = new org.openide.awt.ColorComboBox();
 
-        org.openide.awt.Mnemonics.setLocalizedText(fromLabel, org.openide.util.NbBundle.getMessage(OptionPanel.class, "OptionPanel.fromLabel.text")); // NOI18N
+        setLayout(new java.awt.GridBagLayout());
 
-        minFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        minFormattedTextField.setText("-1000"); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(bgLabel, Dict.BACKGROUND.toString());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(bgLabel, gridBagConstraints);
 
-        org.openide.awt.Mnemonics.setLocalizedText(toLabel, org.openide.util.NbBundle.getMessage(OptionPanel.class, "OptionPanel.toLabel.text")); // NOI18N
-
-        maxFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        maxFormattedTextField.setText("1000"); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(backgroundButton, org.openide.util.NbBundle.getMessage(OptionPanel.class, "OptionPanel.backgroundButton.text")); // NOI18N
-        backgroundButton.addActionListener(new java.awt.event.ActionListener() {
+        bgColorComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backgroundButtonActionPerformed(evt);
+                bgColorComboBoxActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(bgColorComboBox, gridBagConstraints);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fromLabel)
-                            .addComponent(toLabel)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(maxFormattedTextField, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(minFormattedTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(backgroundButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(135, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(fromLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(minFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(toLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(maxFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(backgroundButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        org.openide.awt.Mnemonics.setLocalizedText(fgLabel, Dict.FOREGROUND.toString());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 0, 0);
+        add(fgLabel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(fgColorComboBox, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backgroundButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backgroundButtonActionPerformed
-        backgroundButton.setColor(ColorChooserDialog.showDialog(backgroundButton.getColor()));
-    }//GEN-LAST:event_backgroundButtonActionPerformed
+    private void bgColorComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bgColorComboBoxActionPerformed
+        mOptions.setColorBackground(bgColorComboBox.getSelectedColor());
+    }//GEN-LAST:event_bgColorComboBoxActionPerformed
 
-    void load() {
-        minFormattedTextField.setValue(mOptions.getMin());
-        maxFormattedTextField.setValue(mOptions.getMax());
-        backgroundButton.setColor(mOptions.getColorBackground());
-    }
-
-    void store() {
-        mOptions.setMin((Long) minFormattedTextField.getValue());
-        mOptions.setMax((Long) maxFormattedTextField.getValue());
-        mOptions.setColorBackground(backgroundButton.getColor());
-    }
-
-    boolean valid() {
-        long min;
-        long max;
-
-        min = (Long) minFormattedTextField.getValue();
-        max = (Long) maxFormattedTextField.getValue();
-
-        return max > min;
+    @Override
+    public void load() {
+        SwingUtilities.invokeLater(() -> {
+            bgColorComboBox.setSelectedColor(mOptions.getColorBackground());
+        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private se.trixon.almond.nbp.swing.ColorChooserButton backgroundButton;
-    private javax.swing.JLabel fromLabel;
-    private javax.swing.JFormattedTextField maxFormattedTextField;
-    private javax.swing.JFormattedTextField minFormattedTextField;
-    private javax.swing.JLabel toLabel;
+    private org.openide.awt.ColorComboBox bgColorComboBox;
+    private javax.swing.JLabel bgLabel;
+    private org.openide.awt.ColorComboBox fgColorComboBox;
+    private javax.swing.JLabel fgLabel;
     // End of variables declaration//GEN-END:variables
 }
