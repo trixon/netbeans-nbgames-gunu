@@ -17,10 +17,10 @@ package org.nbgames.gunu;
 
 import java.text.ParseException;
 import javax.swing.DefaultComboBoxModel;
-import org.nbgames.core.DictNbg;
-import org.nbgames.core.Player;
-import org.nbgames.core.PlayerManager;
-import org.nbgames.core.base.NewGamePanel;
+import org.nbgames.core.api.DictNbg;
+import org.nbgames.core.api.Player;
+import org.nbgames.core.api.PlayerManager;
+import org.nbgames.core.api.ui.NewGamePanel;
 import org.openide.util.Exceptions;
 
 /**

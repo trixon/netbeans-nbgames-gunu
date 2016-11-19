@@ -17,8 +17,8 @@ package org.nbgames.gunu;
 
 import java.util.Random;
 import java.util.prefs.PreferenceChangeEvent;
-import org.nbgames.core.NbGames;
-import org.nbgames.core.base.GamePanel;
+import org.nbgames.core.api.NbGames;
+import org.nbgames.core.api.ui.GamePanel;
 import org.openide.util.NbBundle;
 
 /**

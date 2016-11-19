@@ -15,12 +15,12 @@
  */
 package org.nbgames.gunu;
 
-import org.nbgames.core.GameCategory;
-import org.nbgames.core.GameController;
-import org.nbgames.core.api.LogicGameProvider;
-import org.nbgames.core.api.OptionsPanel;
-import org.nbgames.core.base.GamePanel;
-import org.nbgames.core.base.NewGamePanel;
+import org.nbgames.core.api.GameCategory;
+import org.nbgames.core.api.GameController;
+import org.nbgames.core.api.service.LogicGameProvider;
+import org.nbgames.core.api.ui.OptionsPanel;
+import org.nbgames.core.api.ui.GamePanel;
+import org.nbgames.core.api.ui.NewGamePanel;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 
