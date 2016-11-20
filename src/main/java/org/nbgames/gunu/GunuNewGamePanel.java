@@ -36,6 +36,10 @@ public class GunuNewGamePanel extends NewGamePanel {
      */
     public GunuNewGamePanel() {
         initComponents();
+    }
+
+    @Override
+    public void load() {
         Object[] players = PlayerManager.INSTANCE.getPlayersArray();
         playerComboBox.setModel(new DefaultComboBoxModel(players));
 
@@ -44,7 +48,7 @@ public class GunuNewGamePanel extends NewGamePanel {
     }
 
     @Override
-    public void saveState() {
+    public void save() {
         String name = ((Player) playerComboBox.getSelectedItem()).getName();
         mOptions.setPlayer(name);
 

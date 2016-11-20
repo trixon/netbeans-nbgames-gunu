@@ -18,9 +18,9 @@ package org.nbgames.gunu;
 import org.nbgames.core.api.GameCategory;
 import org.nbgames.core.api.GameController;
 import org.nbgames.core.api.service.LogicGameProvider;
-import org.nbgames.core.api.ui.OptionsPanel;
 import org.nbgames.core.api.ui.GamePanel;
 import org.nbgames.core.api.ui.NewGamePanel;
+import org.nbgames.core.api.ui.OptionsPanel;
 import org.openide.util.lookup.ServiceProvider;
 import org.openide.util.lookup.ServiceProviders;
 
@@ -83,7 +83,6 @@ public class Gunu extends GameController implements LogicGameProvider {
 
     @Override
     public void onRequestNewGameStart() {
-        System.out.println("onRequestNewGameStart " + getName());
         getPanel().newGame();
     }
 }
