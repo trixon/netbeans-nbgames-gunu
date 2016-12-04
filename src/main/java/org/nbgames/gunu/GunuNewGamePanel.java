@@ -16,10 +16,9 @@
 package org.nbgames.gunu;
 
 import java.text.ParseException;
-import javax.swing.DefaultComboBoxModel;
 import org.nbgames.core.api.DictNbg;
 import org.nbgames.core.api.Player;
-import org.nbgames.core.api.PlayerManager;
+import org.nbgames.core.api.db.manager.PlayerManager;
 import org.nbgames.core.api.ui.NewGamePanel;
 import org.openide.util.Exceptions;
 
@@ -40,8 +39,7 @@ public class GunuNewGamePanel extends NewGamePanel {
 
     @Override
     public void load() {
-        Object[] players = PlayerManager.INSTANCE.getPlayersArray();
-        playerComboBox.setModel(new DefaultComboBoxModel(players));
+        playerComboBox.setModel(PlayerManager.getInstance().getComboBoxModel());
 
         fromSpinner.setValue(mOptions.getFrom());
         toSpinner.setValue(mOptions.getTo());
