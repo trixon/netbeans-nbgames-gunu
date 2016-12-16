@@ -23,7 +23,7 @@ import org.openide.util.NbBundle;
 
 /**
  *
- * @author Patrik Karlsson <patrik@trixon.se>
+ * @author Patrik Karlsson
  */
 @NbBundle.Messages({
     "CTL_StatusEquals=Congratulations!",
@@ -43,7 +43,7 @@ public class GunuPanel extends GamePanel {
      */
     public GunuPanel() {
         initComponents();
-        setVisible(false);
+        centerPanel.setVisible(false);
         setBackground(mOptions.getColorBackground());
         mOptions.getPreferences().addPreferenceChangeListener((PreferenceChangeEvent evt) -> {
             if (evt.getKey().equals(Options.KEY_COLOR_BACKGROUND)) {
@@ -56,7 +56,7 @@ public class GunuPanel extends GamePanel {
     @Override
     public void newGame() {
         NbGames.outln(Gunu.TAG, "newGame");
-        setVisible(true);
+        centerPanel.setVisible(true);
 
         int min = mOptions.getFrom();
         int max = mOptions.getTo();
