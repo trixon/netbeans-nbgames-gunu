@@ -51,7 +51,7 @@ public class Gunu extends GameController implements LogicGameProvider {
 
     @Override
     public String getHelp() {
-        return "gunu help";
+        return getHelp(Gunu.class);
     }
 
     @Override
