@@ -16,14 +16,14 @@
 package org.nbgames.gunu;
 
 import javax.swing.SwingUtilities;
-import org.nbgames.core.api.ui.OptionsPanel;
+import org.nbgames.core.api.ui.NbgOptionsPanel;
 import se.trixon.almond.util.Dict;
 
-final class OptionPanel extends OptionsPanel {
+final class OptionsPanel extends NbgOptionsPanel {
 
     private final Options mOptions = Options.getInstance();
 
-    public OptionPanel() {
+    public OptionsPanel() {
         initComponents();
         load();
     }
