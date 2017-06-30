@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.nbgames</groupId>
+    <parent>
+        <groupId>org.nbgames</groupId>
+        <artifactId>nbgames-parent</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
     <artifactId>logic-gunu</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <packaging>nbm</packaging>
@@ -118,11 +122,10 @@
         <dependency>
             <groupId>se.trixon.almond</groupId>
             <artifactId>almond-nbp</artifactId>
-            <version>1.0.1-SNAPSHOT</version>
+            <version>${almond.version}</version>
         </dependency>
     </dependencies>
     <properties>
-        <netbeans.version>RELEASE82</netbeans.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netbeans.hint.license>apache20</netbeans.hint.license>
     </properties>
