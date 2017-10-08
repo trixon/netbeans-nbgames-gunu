@@ -17,6 +17,7 @@ package org.nbgames.gunu;
 
 import java.awt.Color;
 import java.util.prefs.Preferences;
+import org.nbgames.core.api.options.NbgOptions;
 import org.openide.util.NbPreferences;
 import se.trixon.almond.util.GraphicsHelper;
 
@@ -24,22 +25,22 @@ import se.trixon.almond.util.GraphicsHelper;
  *
  * @author Patrik Karlsson
  */
-public class Options {
+public class Options extends NbgOptions {
 
-    public static final Color DEFAULT_COLOR_BACKGROUND = Color.decode("#656610");
-    public static final int DEFAULT_FROM = -100;
-    public static final int DEFAULT_TO = 1000;
     public static final String KEY_COLOR_BACKGROUND = "background";
     public static final String KEY_FROM = "from";
     public static final String KEY_PLAYER = "player";
     public static final String KEY_TO = "to";
-    private Preferences mPreferences = NbPreferences.forModule(Options.class);
+    private static final Color DEFAULT_COLOR_BACKGROUND = Color.decode("#656610");
+    private static final int DEFAULT_FROM = -100;
+    private static final int DEFAULT_TO = 1000;
 
     public static Options getInstance() {
         return Holder.INSTANCE;
     }
 
     private Options() {
+        mPreferences = NbPreferences.forModule(getClass());
     }
 
     public Color getColorBackground() {
@@ -52,10 +53,6 @@ public class Options {
 
     public String getPlayer() {
         return mPreferences.get(KEY_PLAYER, "");
-    }
-
-    public Preferences getPreferences() {
-        return mPreferences;
     }
 
     public int getTo() {

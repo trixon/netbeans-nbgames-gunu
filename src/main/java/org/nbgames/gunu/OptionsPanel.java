@@ -16,7 +16,7 @@
 package org.nbgames.gunu;
 
 import javax.swing.SwingUtilities;
-import org.nbgames.core.api.ui.NbgOptionsPanel;
+import org.nbgames.core.api.options.NbgOptionsPanel;
 import se.trixon.almond.util.Dict;
 
 final class OptionsPanel extends NbgOptionsPanel {
